@@ -356,12 +356,18 @@ function srtn(num) {
   });
   var time = 0;
   var start = 0;
-  var pre_i = 0;
+  var now_i = 0;
   var flag = false;
   while (1) {
     var cnt = 0;
     for (var i = 0; i < num; i++) {
       if (pro[i].finish) cnt++;
+    }
+    for(var i=0; i<num; i++){
+      if(!pro[i].finish){
+        now_i = i;
+        break;
+      }
     }
     if (cnt == num) break;
     s_num = 0;
@@ -373,6 +379,10 @@ function srtn(num) {
           s_val = pro[i].achieve;
         }
       }
+    }
+    if(s_val == 99999){
+      time = pro[now_i].at;
+      continue;
     }
     pro[s_num].st[exe_count[s_num]] = time;
     while (1) {

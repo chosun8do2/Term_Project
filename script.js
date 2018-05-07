@@ -289,7 +289,7 @@ function rr(num) {
 function spn(num) {
   var pro = new Array(num);
   var total = 0;
-  var min_num = 0;
+  var min_num = 999999999;
 
   exe_count = new Array(num);
 
@@ -303,7 +303,7 @@ function spn(num) {
     pro[i].ft = [0];
     exe_count[i] = 1;
   }
-  var min_val = pro[0].bt;
+  var min_val = 999999999;
   var sortingField = "at";
   pro.sort(function(a, b) {
     return a[sortingField] - b[sortingField];
@@ -318,6 +318,15 @@ function spn(num) {
       }
     }
     if (cnt == num) break;
+    if(min_num == 999999999){
+      for(var i = 0; i< num; i++){
+        if(!pro[i].finish){
+          min_num = i;
+          break;
+        }
+      }
+    }
+
     if (pro[min_num].at > total) total = pro[min_num].at;
     pro[min_num].st[0] = total;
     total += pro[min_num].bt;
@@ -459,14 +468,21 @@ function hrrn(num) {
       t_tmp[i] = total - pro[i].at;
     }
     min_val = 0;
-    min_num = 0;
+    min_num = 99999;
     for (var i = 0; i < num; i++) {
       if (total >= pro[i].at && min_val < ((t_tmp[i] + pro[i].bt) / pro[i].bt) && !pro[i].finish) {
         min_val = ((t_tmp[i] + pro[i].bt) / pro[i].bt);
         min_num = i;
       }
     }
-
+    if(min_num == 99999){
+      for(var i = 0; i< num; i++){
+        if(!pro[i].finish){
+          min_num = i;
+          break;
+        }
+      }
+    }
     if (pro[min_num].at > total) total = pro[min_num].at;
     pro[min_num].st[0] = total;
     total += pro[min_num].bt;
@@ -475,8 +491,6 @@ function hrrn(num) {
     pro[min_num].wt = pro[min_num].tt - pro[min_num].bt;
     pro[min_num].ntt = pro[min_num].tt / pro[min_num].bt;
     pro[min_num].finish = true;
-    min_num = 0;
-    min_val = 0;
   }
   return pro;
 }

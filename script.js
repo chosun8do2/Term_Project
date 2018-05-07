@@ -360,10 +360,9 @@ function srtn(num) {
   pro.sort(function(a, b) {
     return a[sortingField] - b[sortingField];
   });
-  var time = 0;
-  var start = 0;
-  var now_i = 0;
-  var flag = false;
+  var time = 0; //현재 시간
+  var now_i = 0; //현재 가장 at가 빠른 프로세스
+  var flag = false; //선택된 프로세스가 변경되어야 하는가?
   while (1) {
     var cnt = 0;
     for (var i = 0; i < num; i++) {
@@ -470,7 +469,8 @@ function hrrn(num) {
     min_num = 99999;
     for (var i = 0; i < num; i++) {
       //response ratio가 가장 큰 프로세스 선택
-      if (total >= pro[i].at && min_val < ((t_tmp[i] + pro[i].bt) / pro[i].bt) && !pro[i].finish) {
+      if (total >= pro[i].at && min_val < ((t_tmp[i] + pro[i].bt) / pro[i].bt)
+       && !pro[i].finish) {
         min_val = ((t_tmp[i] + pro[i].bt) / pro[i].bt);
         min_num = i;
       }

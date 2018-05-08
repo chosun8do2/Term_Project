@@ -4,11 +4,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>스케줄링 시뮬레이터</title>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-  <!--간트 차트 받아오기-->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <!--표 받아오기-->
   <script type="text/javascript" src="script.js"></script>
-  <!--작성한 js 받아오기-->
 </head>
 
 <body>
@@ -18,8 +15,8 @@
   <div>
     스케줄링 기법
     <form>
-      <select id="scheduling" onchange="insertValue(this.form)"> <!--선택에 따른 스케줄링 기법선택-->
-        <option value=0>선택하세요</option> <!--value값으로 각각 일치하는 알고리즘 함수 호출-->
+      <select id="scheduling" onchange="insertValue(this.form)">
+        <option value=0>선택하세요</option>
         <option value=1 name="algorithm" value="fcfs">FCFS</option>
         <option value=2 name="algorithm" value="robin">RR</option>
         <option value=3 name="algorithm" value="spn">SPN</option>
@@ -33,10 +30,14 @@
     <fieldset>
       <legend>입력 공간</legend>
       <table id="inputTable">
-        <!--프로세스 입력 테이블-->
         <tr>
           <td>
             <table>
+              <tr>
+                <td>
+                  프로세스는 위에서부터 P1, P2, P3 ... 입니다. 같은 시간에 도착하면 짧은 것을 먼저 처리합니다.<br />
+                </td>
+              </tr>
               <tr>
                 <td><input name="addButton" type="button" style="cursor:hand" onClick="insRow()" value="추가">
                   <font color="#FF0000">*</font>추가버튼을 클릭하면 프로세스가 추가됩니다.</td>
@@ -70,9 +71,7 @@
     </fieldset>
   </form>
   <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
-  <!--간트차트 생성 공간-->
   <div id="table_div" align="center"></div>
-  <!--표 생성 공간-->
 </body>
 
 </html>

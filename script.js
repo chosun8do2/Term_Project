@@ -191,6 +191,9 @@ function fcfs(num) {
 
   var sortingField = "at"; //at 기준으로 오름차순 정렬
   pro.sort(function(a, b) {
+    if(a[sortingField] == b[sortingField]){
+      return a["bt"] - b["bt"];
+    }
     return a[sortingField] - b[sortingField];
   });
   for (var i = 0; i < num; i++) {
@@ -230,6 +233,9 @@ function rr(num) {
 
   var sortingField = "at";
   pro.sort(function(a, b) {
+    if(a[sortingField] == b[sortingField]){
+      return a["bt"] - b["bt"];
+    }
     return a[sortingField] - b[sortingField];
   });
   while (1) { //모든 프로세스가 끝날 때까지 반복
@@ -241,16 +247,15 @@ function rr(num) {
         continue;
       }
       if (pro[i].at > total) { //다음 프로세스 설정
-        if (cnt == i) {
           total = pro[i].at;
-        } else continue;
       }
       var tem_val = 999999999;
       var tem_num = 0;
+
       for (var j = 0; j < num; j++) { //다음 대기 프로세스가 없을 시 다음 프로세스까지 시간이동
         if (pro[j].at > total) break;
         else {
-          if (pro[j].at <= tem_val && pro[j].achieve != 0) {
+          if (pro[j].at < tem_val && pro[j].achieve != 0) {
             tem_val = pro[j].at;
             tem_num = j;
           }
@@ -304,6 +309,9 @@ function spn(num) {
   }
   var sortingField = "at";
   pro.sort(function(a, b) {
+    if(a[sortingField] == b[sortingField]){
+      return a["bt"] - b["bt"];
+    }
     return a[sortingField] - b[sortingField];
   });
   while (1) {
@@ -358,6 +366,9 @@ function srtn(num) {
 
   var sortingField = "at";
   pro.sort(function(a, b) {
+    if(a[sortingField] == b[sortingField]){
+      return a["bt"] - b["bt"];
+    }
     return a[sortingField] - b[sortingField];
   });
   var time = 0; //현재 시간
@@ -448,6 +459,9 @@ function hrrn(num) {
   var min_val = pro[0].bt;
   var sortingField = "at";
   pro.sort(function(a, b) {
+    if(a[sortingField] == b[sortingField]){
+      return a["bt"] - b["bt"];
+    }
     return a[sortingField] - b[sortingField];
   });
   while (1) {
